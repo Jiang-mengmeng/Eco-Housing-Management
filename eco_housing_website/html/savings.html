@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savings</title>
+    <!-- Google Charts -->
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Savings</h1>
+        <p>Displaying savings information for Logement ID: <span id="logement-id-display"></span></p>
+
+        <!-- Time Scale Selector -->
+        <div class="mb-3">
+            <label for="time-scale-selector" class="form-label">Select Time Scale:</label>
+            <select id="time-scale-selector" class="form-select">
+                <option value="daily">Daily</option>
+                <option value="weekly" selected>Weekly</option>
+                <option value="monthly">Monthly</option>
+            </select>
+        </div>
+
+        <!-- Line Chart Container -->
+        <div id="chart-container" style="height: 500px;"></div>
+
+        <div id="alert-message" class="alert mt-3 d-none" role="alert"></div>
+    </div>
+    <!-- Savings JS -->
+    <script src="../js/savings.js"></script>
+</body>
+</html>

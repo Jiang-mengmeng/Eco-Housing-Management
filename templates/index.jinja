@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Facture Pie Chart</title>
+    <!-- Load the Google Charts library -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        // Load the required package for pie charts
+        google.charts.load('current', {packages: ['corechart']});
+
+        // Set the callback function to draw the chart once the library is loaded
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            // Define the data for the chart
+            // The first row defines column headers: ['Type', 'Montant', {tooltip}]
+            // Subsequent rows are dynamically inserted using Jinja2 templating
+            var data = google.visualization.arrayToDataTable([
+                ['Type', 'Montant', { role: 'tooltip', type: 'string' }],
+                {% for row in data %}
+                    // Each row represents a part of the pie chart
+                    ['{{ row.Type_fac }}', {{ row.Montant }}, 'Montant: {{ row.Montant }} | Consom: {{ row.Consom }} | Date: {{ row.Dates }}'],
+                {% endfor %}
+            ]);
+
+            // Define options for the pie chart
+            var options = {
+                title: 'Facture Distribution for Logement ID: {{ logement_id }}', // Chart title
+                tooltip: { isHtml: true }, // Enable custom HTML tooltips
+                width: 900, // Chart width in pixels
+                height: 500 // Chart height in pixels
+            };
+
+            // Create a new pie chart in the div with ID 'piechart'
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+            // Render the chart using the provided data and options
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+<body>
+    <!-- Title for the page -->
+    <h1>Facture Pie Chart</h1>
+    <!-- Placeholder div where the chart will be rendered -->
+    <div id="piechart"></div>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-Day Weather Forecast</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #0073e6;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        label {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            font-size: 16px;
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 8px 16px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #0073e6;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005bb5;
+        }
+
+        #forecast {
+            margin: 30px auto;
+            width: 90%;
+            max-width: 800px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #0073e6;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 10px;
+            background-color: #0073e6;
+            color: white;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>5-Day Weather Forecast</h1>
+    <form id="weather-form">
+        <label for="city">Enter City:</label>
+        <input type="text" id="city" name="city" placeholder="e.g., London" required>
+        <button type="submit">Get Forecast</button>
+    </form>
+    <div id="forecast"></div>
+
+    <footer>
+        Powered by OpenWeatherMap | Made with ❤️
+    </footer>
+
+    <script>
+        document.getElementById('weather-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const city = document.getElementById('city').value.trim();
+
+            try {
+                const response = await axios.get(`http://localhost:8000/weather/${city}`);
+                const data = response.data;
+
+                const forecastDiv = document.getElementById('forecast');
+                forecastDiv.innerHTML = `
+                    <h2>Weather in ${data.city}, ${data.country}</h2>
+                    <p><strong>5-Day Forecast:</strong></p>
+                `;
+
+                const table = document.createElement('table');
+                table.innerHTML = `
+                    <thead>
+                        <tr>
+                            <th>Date & Time</th>
+                            <th>Temperature (°C)</th>
+                            <th>Weather</th>
+                            <th>Wind Speed (m/s)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${data.forecast.map(item => `
+                            <tr>
+                                <td>${item.datetime}</td>
+                                <td>${item.temperature}</td>
+                                <td>${item.weather}</td>
+                                <td>${item.wind_speed}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                `;
+
+                forecastDiv.appendChild(table);
+            } catch (error) {
+                alert("Error fetching weather data: " + (error.response?.data?.detail || error.message));
+            }
+        });
+    </script>
+</body>
+</html>
