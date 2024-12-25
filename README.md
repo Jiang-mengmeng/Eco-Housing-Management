@@ -88,8 +88,8 @@ The website resides in the `eco_housing_website` directory, with subdirectories 
     ```
 
 3. **Access the Website**:
-    - Serve `eco_housing_website` using a local HTTP server, or
-    - Directly open `html/index.html` in your browser.
+ - Serve `eco_housing_website` using a local HTTP server, or
+ - Directly open `html/index.html` in your browser.
 
 ---
 
