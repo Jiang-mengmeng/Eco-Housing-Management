@@ -119,6 +119,8 @@ For any inquiries or questions, please reach out to:
 - **Email**: [jiangmengmeng1211@gmail.com](mailto:jiangmengmeng1211@gmail.com)
 - **Project Link**: [GitHub Repository](https://github.com/jiangmengmeng/Eco-Housing-Management)
 
+---
+
 ## **Acknowledgments**
 This project was made possible with the help of the following resources:
 - **ChatGPT**: Assistance with various coding and project management tasks.
