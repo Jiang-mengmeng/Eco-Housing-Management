@@ -7,13 +7,13 @@ This project aims to create an interactive, responsive internet application for 
 1. Database
 1.1 Structure
 The database, defined in logement.sql, follows a relational model with the following tables:
---Logement: Stores housing information.
---Piece: Represents rooms in a logement.
---Capteur: Details sensors/actuators in each room.
---Type_Capteur: Defines types of sensors/actuators (e.g., temperature, electricity).
---Mesure: Logs measurements from sensors.
---Facture: Tracks bills (electricity, water, waste) for each logement.
---Adresse, Ville, Location: Specify address-related information.
+Logement: Stores housing information.
+Piece: Represents rooms in a logement.
+Capteur: Details sensors/actuators in each room.
+Type_Capteur: Defines types of sensors/actuators (e.g., temperature, electricity).
+Mesure: Logs measurements from sensors.
+Facture: Tracks bills (electricity, water, waste) for each logement.
+Adresse, Ville, Location: Specify address-related information.
 1.2 Initialization and Data Filling
 Script: remplissage.py initializes the database structure and populates it with sample data.
 Generated Data: Includes random Mesures and Factures for testing and demonstration.
@@ -21,8 +21,8 @@ Generated Data: Includes random Mesures and Factures for testing and demonstrati
 2. Server
 2.1 REST API
 The server, implemented in serveur.py, provides RESTful endpoints to interact with the database:
---GET Requests: Retrieve information (e.g., logements, capteurs, mesures, factures).
---POST Requests: Add new data (e.g., capteurs, mesures, factures).
+GET Requests: Retrieve information (e.g., logements, capteurs, mesures, factures).
+POST Requests: Add new data (e.g., capteurs, mesures, factures).
 2.2 Dynamic HTML Generation
 Functionality: Creates on-the-fly HTML pages for visualizing data.
 Example: index.jinja generates a pie chart displaying invoice values using Google Charts.
